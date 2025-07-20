@@ -10,8 +10,6 @@ import java.util.List;
 
 public class EquipeDTO {
 
-    private Long idEquipe;
-
     private String nameEquipe;
     private String acronyme;
 
@@ -22,8 +20,7 @@ public class EquipeDTO {
     public EquipeDTO() {
     }
 
-    public EquipeDTO(Long idEquipe, String nameEquipe, String acronyme, List<JoueurDTO> joueurs, int budget) {
-        this.idEquipe = idEquipe;
+    public EquipeDTO( String nameEquipe, String acronyme, List<JoueurDTO> joueurs, int budget) {
         this.nameEquipe = nameEquipe;
         this.acronyme = acronyme;
         this.joueurs = joueurs;
@@ -32,9 +29,7 @@ public class EquipeDTO {
 
 
 
-    public void setIdEquipe(Long idEquipe) {
-        this.idEquipe = idEquipe;
-    }
+
 
     public void setNameEquipe(String nameEquipe) {
         this.nameEquipe = nameEquipe;
@@ -52,7 +47,7 @@ public class EquipeDTO {
         this.budget = budget;
     }
 
-    public Long getIdEquipe() { return idEquipe; }
+
     public String getNameEquipe() { return nameEquipe; }
     public String getAcronyme() { return acronyme; }
     public List<JoueurDTO> getJoueurs() { return joueurs; }

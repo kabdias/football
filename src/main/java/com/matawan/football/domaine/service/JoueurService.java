@@ -15,7 +15,7 @@ import java.util.Optional;
 public class JoueurService {
 
     private final JoueurRepository joueurRepository;
-    private final JoueurMapper joueurMapper;
+    public final JoueurMapper joueurMapper;
 
     public JoueurService(JoueurRepository joueurRepository, JoueurMapper joueurMapper) {
         this.joueurRepository = joueurRepository;
@@ -27,10 +27,9 @@ public class JoueurService {
      * Ajoute un joueur à la base de données.
      * @param joueurDTO le joueur à ajouter
      */
-    public JoueurDTO addJoueur(JoueurDTO joueurDTO) {
+    public void addJoueur(JoueurDTO joueurDTO) {
         Joueur joueurEntity = joueurMapper.toEntity(joueurDTO);
-        Joueur saved = joueurRepository.save(joueurEntity);
-        return joueurMapper.toDto(saved);
+        joueurRepository.save(joueurEntity);
     }
 
     /**
@@ -39,9 +38,8 @@ public class JoueurService {
      * @param id l'identifiant du joueur
      * @return un Optional contenant le joueur s'il existe ou vide sinon
      */
-    public Optional<JoueurDTO> getJoueurById(Long id) {
-        return joueurRepository.findById(id)
-                .map(joueurMapper::toDto);
+    public Optional<Joueur> getJoueurById(Long id) {
+        return joueurRepository.findById(id);
     }
 
     /**
@@ -54,7 +52,14 @@ public class JoueurService {
     }
 
     public Optional<JoueurDTO> getJoueurByLastName(String lastName) {
-        return joueurRepository.findByLastName(lastName)
-                .map(joueurMapper::toDto);
+        List<Joueur> joueurs = joueurRepository.findByLastName(lastName);
+
+        if (joueurs.isEmpty()) {
+            return Optional.empty();
+        } else if (joueurs.size() > 1) {
+            throw new IllegalStateException("Plusieurs joueurs trouvés pour le nom : " + lastName);
+        } else {
+            return Optional.of(joueurMapper.toDto(joueurs.get(0)));
+        }
     }
 }

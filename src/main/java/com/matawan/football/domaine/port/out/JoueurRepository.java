@@ -4,11 +4,12 @@ import com.matawan.football.domaine.model.Joueur;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
 public  interface JoueurRepository extends JpaRepository<Joueur, Long> {
 
-    Optional<Joueur> findByLastName(String lastName);
+    List<Joueur> findByLastName(String lastName);
 }
 

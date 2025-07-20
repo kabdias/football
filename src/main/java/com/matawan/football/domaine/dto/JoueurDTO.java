@@ -3,7 +3,6 @@ package com.matawan.football.domaine.dto;
 import com.matawan.football.domaine.model.Position;
 
 public class JoueurDTO {
-    private Long id;
     private String firstName;
     private String lastName;
     private Position position;
@@ -11,19 +10,10 @@ public class JoueurDTO {
     public JoueurDTO() {
     }
 
-    public JoueurDTO(Long id, String firstName, String lastName, Position position) {
-        this.id = id;
+    public JoueurDTO( String firstName, String lastName, Position position) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.position = position;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getFirstName() {
