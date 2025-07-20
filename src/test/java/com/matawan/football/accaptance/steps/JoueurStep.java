@@ -25,12 +25,11 @@ public class JoueurStep {
         List<Map<String, String>> dataMaps = table.asMaps(String.class, String.class);
 
         dataMaps.forEach(dataMap -> {
-            Long idJoueur = Long.parseLong(dataMap.get("id"));
             String firstName= dataMap.get("firstName");
             String lastName = dataMap.get("lastName");
             String position = dataMap.get("position");
 
-            JoueurDTO joueurDTO = new JoueurDTO(idJoueur, firstName, lastName, Position.getPosition(position));
+            JoueurDTO joueurDTO = new JoueurDTO(firstName, lastName, Position.getPosition(position));
 
             joueurService.addJoueur(joueurDTO);
 

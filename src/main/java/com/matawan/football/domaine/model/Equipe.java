@@ -9,6 +9,7 @@ import java.util.List;
 public class Equipe {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idEquipe;
 
     private String nameEquipe;
